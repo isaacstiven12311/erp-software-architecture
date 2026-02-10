@@ -49,7 +49,6 @@ El módulo de compras permite gestionar proveedores, registrar órdenes de compr
 | Gerencia       | gerente@empresa.com       | Reportes y métricas del sistema          |
 
 
-# Restricciones de la Arquitectura 
 # Restricciones de la Arquitectura
 
 - Backend desarrollado en Java con Spring Boot.
@@ -59,6 +58,60 @@ El módulo de compras permite gestionar proveedores, registrar órdenes de compr
 - Despliegue usando Docker.
 - El sistema debe ser accesible vía navegador web.
 
+## Estrategia de Solución
+
+La solución se basa en una arquitectura de tres capas:
+
+Presentación: Frontend React (SPA).
+
+Lógica de Negocio: Backend Spring Boot.
+
+Persistencia: Base de datos PostgreSQL.
+
+Se utiliza Docker para facilitar el despliegue y la portabilidad del sistema.
+  
+## Sistema General de Caja Blanca 
+Motivación
+
+Separar responsabilidades para facilitar el mantenimiento, la escalabilidad y la evolución del sistema.
+
+Bloques de Construcción Contenidos
+
+Frontend
+
+Backend
+
+Base de Datos
+
+Servicio de Autenticación
+
+Interfaces Importantes
+
+API REST entre Frontend y Backend
+
+Conexión JDBC entre Backend y PostgreSQL
+
+Caja Negra 1: Frontend Web
+
+Propósito: Interacción con el usuario.
+
+Interfases: API REST.
+
+Características de Calidad: Usabilidad y rendimiento.
+
+Caja Negra 2: Backend API
+
+Propósito: Lógica de negocio.
+
+Interfases: REST, JDBC.
+
+Características de Calidad: Seguridad y rendimiento.
+
+Caja Negra 3: Base de Datos
+
+Propósito: Persistencia de información.
+
+Interfases: SQL.
 
 # Alcance y Contexto del Sistema 
 ## Contexto de Negocio
@@ -66,17 +119,6 @@ El módulo de compras permite gestionar proveedores, registrar órdenes de compr
 El sistema ERP interactúa con usuarios internos (personal de compras y administradores) y proveedores externos.
 
 
-**\<optionally: Explanation of external domain interfaces\>**
-
-## Contexto Técnico {#_contexto_técnico}
-
-**\<Diagrama o Tabla\>**
-
-**\<Opcional: Explicación de las interfases técnicas\>**
-
-**\<Mapeo de Entrada/Salida a canales\>**
-
-# Estrategia de solución 
 
 # Vista de Bloques 
 ### Bloques de Construcción
@@ -86,82 +128,8 @@ El sistema ERP interactúa con usuarios internos (personal de compras y administ
 - Base de Datos PostgreSQL: Almacenamiento de datos.
 - Servicio de Autenticación: Gestión de usuarios y roles.
 
-## Sistema General de Caja Blanca {#_sistema_general_de_caja_blanca}
 
-***\<Diagrama general\>***
-
-Motivación
-
-:   *\<Explicación en texto\>*
-
-Bloques de construcción contenidos
-
-:   *\<Desripción de los bloques de construcción contenidos (Cajas
-    negras)\>*
-
-Interfases importantes
-
-:   *\<Descripción de las interfases importantes\>*
-
-### \<Caja Negra 1\> {#_caja_negra_1}
-
-*\<Propósito/Responsabilidad\>*
-
-*\<Interfase(s)\>*
-
-*\<(Opcional) Características de Calidad/Performance\>*
-
-*\<(Opcional) Ubicación Archivo/Directorio\>*
-
-*\<(Opcional) Requerimientos Satisfechos\>*
-
-*\<(Opcional) Riesgos/Problemas/Incidentes Abiertos\>*
-
-### \<Caja Negra 2\> {#_caja_negra_2}
-
-*\<plantilla de caja negra\>*
-
-### \<Caja Negra N\> {#_caja_negra_n}
-
-*\<Plantilla de caja negra\>*
-
-### \<Interfase 1\> {#_interfase_1}
-
-...​
-
-### \<Interfase m\> {#_interfase_m}
-
-## Nivel 2 {#_nivel_2}
-
-### Caja Blanca *\<bloque de construcción 1\>* {#_caja_blanca_bloque_de_construcción_1}
-
-*\<plantilla de caja blanca\>*
-
-### Caja Blanca *\<bloque de construcción 2\>* {#_caja_blanca_bloque_de_construcción_2}
-
-*\<plantilla de caja blanca\>*
-
-...​
-
-### Caja Blanca *\<bloque de construcción m\>* {#_caja_blanca_bloque_de_construcción_m}
-
-*\<plantilla de caja blanca\>*
-
-## Nivel 3 {#_nivel_3}
-
-### Caja Blanca \<\_bloque de construcción x.1\_\> {#_caja_blanca_bloque_de_construcción_x_1}
-
-*\<plantilla de caja blanca\>*
-
-### Caja Blanca \<\_bloque de construcción x.2\_\> {#_caja_blanca_bloque_de_construcción_x_2}
-
-*\<plantilla de caja blanca\>*
-
-### Caja Blanca \<\_bloque de construcción y.1\_\> {#_caja_blanca_bloque_de_construcción_y_1}
-
-*\<plantilla de caja blanca\>*
-
-# Vista de Ejecución {#section-runtime-view}
+# Vista de Ejecución 
 
 ## Escenario de ejecución: Registrar Producto
 
@@ -176,63 +144,59 @@ Interfases importantes
 
 
 
-## Nivel de infraestructura 1 {#_nivel_de_infraestructura_1}
-
-***\<Diagrama General\>***
-
+## Nivel de infraestructura 1 
 Motivación
 
-:   *\<Explicación en forma textual\>*
+Garantizar disponibilidad, escalabilidad y facilidad de despliegue.
 
 Características de Calidad/Rendimiento
 
-:   *\<Explicación en forma textual\>*
+Alta disponibilidad.
 
-    Mapeo de los Bloques de Construcción a Infraestructura
+Aislamiento mediante contenedores.
 
-    :   *\<Descripción del mapeo\>*
+Facilidad de escalado.
 
-## Nivel de Infraestructura 2 {#_nivel_de_infraestructura_2}
+Mapeo de Bloques a Infraestructura
 
-### *\<Elemento de Infraestructura 1\>* {#_elemento_de_infraestructura_1}
+Frontend → Contenedor Web
 
-*\<diagrama + explicación\>*
+Backend → Contenedor Spring Boot
 
-### *\<Elemento de Infraestructura 2\>* {#_elemento_de_infraestructura_2}
+Base de Datos → Contenedor PostgreSQL
 
-*\<diagrama + explicación\>*
+## Conceptos Transversales 
+Seguridad
 
-...​
+Autenticación basada en usuarios y roles.
 
-### *\<Elemento de Infraestructura n\>* {#_elemento_de_infraestructura_n}
+Manejo de Errores
 
-*\<diagrama + explicación\>*
+Gestión centralizada de excepciones en el backend.
 
-# Conceptos Transversales (Cross-cutting) {#section-concepts}
+Logging
 
-## *\<Concepto 1\>* {#_concepto_1}
+Registro de eventos y errores para auditoría y soporte.
 
-*\<explicación\>*
+## Decisiones de Diseño 
 
-## *\<Concepto 2\>* {#_concepto_2}
+Uso de arquitectura REST.
 
-*\<explicación\>*
+Separación Frontend / Backend.
 
-...​
+Uso de contenedores Docker.
 
-## *\<Concepto n\>* {#_concepto_n}
+Base de datos relacional PostgreSQL.
 
-*\<explicación\>*
+## Requerimientos de Calidad 
+Árbol de Calidad 
+Usabilidad
 
-# Decisiones de Diseño {#section-design-decisions}
+Rendimiento
 
-# Requerimientos de Calidad {#section-quality-scenarios}
+Seguridad
 
-## Árbol de Calidad {#_árbol_de_calidad}
-
-## Escenarios de calidad {#_escenarios_de_calidad}
-
-# Riesgos y deuda técnica {#section-technical-risks}
+Escalabilidad
 # Vista de Despliegue
 
 El sistema se desplegará en un servidor usando contenedores Docker.
@@ -242,7 +206,6 @@ El sistema se desplegará en un servidor usando contenedores Docker.
 - Servidor Web React
 - Nginx como proxy inverso
 
-# Glosario {#section-glossary}
 # Glosario
 
 | Término        | Definición |
