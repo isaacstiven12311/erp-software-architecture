@@ -5,4 +5,4 @@ Documentación del proyecto ERP usando la plantilla arc42.
 ## Contenido
 - Documentación arc42
 - Diagramas de arquitectura
-- Link de Notion con epicas y historias de usuario 
+
