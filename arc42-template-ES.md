@@ -1,7 +1,3 @@
----
-date: Enero 2023
-title: Plantilla ![arc42](images/arc42-logo.png)
----
 
 # 
 
@@ -18,31 +14,57 @@ Revisión de la plantilla: 7.0 ES (basada en asciidoc), Enero 2017
 arquitectura arc42, <https://www.arc42.org>. Creada por Dr. Peter
 Hruschka y Dr. Gernot Starke.
 
-# Introducción y Metas {#section-introduction-and-goals}
+# Introducción y Metas
+# 1. Introducción y Objetivos
 
-## Vista de Requerimientos {#_vista_de_requerimientos}
+## Objetivo del Sistema ERP
+El sistema ERP tiene como objetivo integrar y automatizar los procesos empresariales, permitiendo la gestión eficiente de compras, inventarios, proveedores y productos, mejorando la trazabilidad y control de la información.
 
-## Metas de Calidad {#_metas_de_calidad}
+## Objetivo del Módulo de Compras
+El módulo de compras permite gestionar proveedores, registrar órdenes de compra, controlar la adquisición de productos y garantizar la disponibilidad de inventario.
 
-## Partes interesadas (Stakeholders) {#_partes_interesadas_stakeholders}
+## Vista de Requerimientos 
+## Requisitos de Negocio Principales
+- Registrar y gestionar proveedores.
+- Crear y administrar órdenes de compra.
+- Registrar productos adquiridos.
+- Consultar historial de compras.
+- Generar reportes de compras.
+- Controlar el estado de las órdenes (pendiente, aprobada, recibida).
 
-+-------------+---------------------------+---------------------------+
-| Rol/Nombre  | Contacto                  | Expectativas              |
-+=============+===========================+===========================+
-| *           | *\<Contact-1\>*           | *\<Expectation-1\>*       |
-| \<Role-1\>* |                           |                           |
-+-------------+---------------------------+---------------------------+
-| *           | *\<Contact-2\>*           | *\<Expectation-2\>*       |
-| \<Role-2\>* |                           |                           |
-+-------------+---------------------------+---------------------------+
+## Metas de Calidad 
+## Metas de Calidad
 
-# Restricciones de la Arquitectura {#section-architecture-constraints}
+- Usabilidad: El sistema debe ser fácil de usar por el personal de compras.
+- Rendimiento: Las consultas deben responder en menos de 2 segundos.
+- Seguridad: Acceso controlado mediante autenticación y roles.
+- Escalabilidad: Permitir agregar nuevos módulos en el futuro.
 
-# Alcance y Contexto del Sistema {#section-context-and-scope}
+## Partes interesadas (Stakeholders)
 
-## Contexto de Negocio {#_contexto_de_negocio}
+| Rol            | Contacto                  | Expectativas                              |
+|----------------|---------------------------|------------------------------------------|
+| Administrador  | admin@empresa.com         | Control total del sistema                |
+| Compras        | compras@empresa.com       | Gestionar proveedores y órdenes de compra|
+| Gerencia       | gerente@empresa.com       | Reportes y métricas del sistema          |
 
-**\<Diagrama o Tabla\>**
+
+# Restricciones de la Arquitectura 
+# Restricciones de la Arquitectura
+
+- Backend desarrollado en Java con Spring Boot.
+- Base de datos PostgreSQL.
+- Frontend desarrollado en React (SPA).
+- Comunicación mediante API REST.
+- Despliegue usando Docker.
+- El sistema debe ser accesible vía navegador web.
+
+
+# Alcance y Contexto del Sistema 
+## Contexto de Negocio
+
+El sistema ERP interactúa con usuarios internos (personal de compras y administradores) y proveedores externos.
+
 
 **\<optionally: Explanation of external domain interfaces\>**
 
@@ -54,9 +76,15 @@ Hruschka y Dr. Gernot Starke.
 
 **\<Mapeo de Entrada/Salida a canales\>**
 
-# Estrategia de solución {#section-solution-strategy}
+# Estrategia de solución 
 
-# Vista de Bloques {#section-building-block-view}
+# Vista de Bloques 
+### Bloques de Construcción
+
+- Frontend Web (React): Interfaz para usuarios.
+- Backend API (Spring Boot): Lógica de negocio.
+- Base de Datos PostgreSQL: Almacenamiento de datos.
+- Servicio de Autenticación: Gestión de usuarios y roles.
 
 ## Sistema General de Caja Blanca {#_sistema_general_de_caja_blanca}
 
@@ -135,21 +163,18 @@ Interfases importantes
 
 # Vista de Ejecución {#section-runtime-view}
 
-## \<Escenario de ejecución 1\> {#_escenario_de_ejecución_1}
+## Escenario de ejecución: Registrar Producto
 
--   *\<Inserte un diagrama de ejecución o la descripción del
-    escenario\>*
 
--   *\<Inserte la descripción de aspectos notables de las interacciones
-    entre los bloques de construcción mostrados en este diagrama.\>*
+### Flujo
+1. El usuario ingresa los datos del producto en el frontend.
+2. El frontend envía la solicitud al backend.
+3. El backend valida los datos.
+4. El backend guarda el producto en la base de datos.
+5. Se devuelve confirmación al usuario.
 
-## \<Escenario de ejecución 2\> {#_escenario_de_ejecución_2}
 
-## ...​
 
-## \<Escenario de ejecución n\> {#_escenario_de_ejecución_n}
-
-# Vista de Despliegue {#section-deployment-view}
 
 ## Nivel de infraestructura 1 {#_nivel_de_infraestructura_1}
 
@@ -208,13 +233,25 @@ Características de Calidad/Rendimiento
 ## Escenarios de calidad {#_escenarios_de_calidad}
 
 # Riesgos y deuda técnica {#section-technical-risks}
+# Vista de Despliegue
+
+El sistema se desplegará en un servidor usando contenedores Docker.
+
+- Contenedor Backend Spring Boot
+- Contenedor PostgreSQL
+- Servidor Web React
+- Nginx como proxy inverso
 
 # Glosario {#section-glossary}
+# Glosario
 
-+----------------------+-----------------------------------------------+
-| Término              | Definición                                    |
-+======================+===============================================+
-| *\<Término-1\>*      | *\<definicion-1\>*                            |
-+----------------------+-----------------------------------------------+
-| *\<Término-2\>*      | *\<definicion-2\>*                            |
-+----------------------+-----------------------------------------------+
+| Término        | Definición |
+|----------------|------------|
+| Producto       | Bien adquirido o vendido por la empresa |
+| Proveedor      | Persona o empresa que suministra productos |
+| Orden de Compra| Documento que autoriza la compra |
+| ERP            | Sistema de planificación de recursos empresariales |
+| Inventario     | Productos almacenados |
+| Usuario        | Persona que usa el sistema |
+
+
